@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 
 function hiddenInput($prompt = 'Enter password: ') {
     if (strncasecmp(PHP_OS, 'WIN', 3) == 0) {
@@ -60,4 +61,12 @@ function verifyMasterPassword() {
 
     echo "Too many failed attempts. Exiting.\n";
     exit;
+}
+
+function encrypt_password($password) {
+    return openssl_encrypt($password, CIPHER_METHOD, ENCRYPTION_KEY, 0, ENCRYPTION_IV);
+}
+
+function decrypt_password($encrypted) {
+    return openssl_decrypt($encrypted, CIPHER_METHOD, ENCRYPTION_KEY, 0, ENCRYPTION_IV);
 }

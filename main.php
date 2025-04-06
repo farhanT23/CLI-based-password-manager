@@ -10,22 +10,29 @@ if (!isMasterPasswordSet()) {
     verifyMasterPassword();
 }
 
-while (true) {
-    echo "\n=== Password Manager ===\n";
+function mainMenu() {
+
+    echo "\n=== Main Menu ===\n";
     echo "1. Add New Password\n";
     echo "2. View Passwords\n";
     echo "3. Exit\n";
     echo "Choose an option: ";
 
+}
+
+while (true) {
+    
+    mainMenu();
+
     $choice = trim(fgets(STDIN));
 
     switch ($choice) {
         case '1':
-            require 'addPassword.php';
+            require_once 'addPassword.php';
             break;
 
         case '2':
-            require 'viewPasswords.php';
+            require_once 'viewPasswords.php';
             break;
 
         case '3':
