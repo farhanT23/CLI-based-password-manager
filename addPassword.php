@@ -1,15 +1,6 @@
 <?php 
 require_once 'functions.php';
 
-function loadPasswords() {
-    $file = 'storage/passwords.json';
-    if (!file_exists($file)) {
-        return [];
-    }
-    $json = file_get_contents($file);
-    return json_decode($json, true);
-}
-
 function savePasswords($passwords) {
     $json = json_encode($passwords, JSON_PRETTY_PRINT);
     file_put_contents('storage/passwords.json', $json);
@@ -31,7 +22,7 @@ function validation($title, $username, $password, $confirm) {
     if (empty($entries)) {
         return true;
     }
-    
+
     foreach ($entries as $entry) {
         if ($entry['title'] === $title) {
             echo "Title already exists. Please choose a different title.\n";

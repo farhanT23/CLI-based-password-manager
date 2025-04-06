@@ -63,10 +63,38 @@ function verifyMasterPassword() {
     exit;
 }
 
+function loadPasswords() {
+    $file = 'storage/passwords.json';
+    if (!file_exists($file)) {
+        return [];
+    }
+    $json = file_get_contents($file);
+    return json_decode($json, true);
+}
+
 function encrypt_password($password) {
     return openssl_encrypt($password, CIPHER_METHOD, ENCRYPTION_KEY, 0, ENCRYPTION_IV);
 }
 
 function decrypt_password($encrypted) {
     return openssl_decrypt($encrypted, CIPHER_METHOD, ENCRYPTION_KEY, 0, ENCRYPTION_IV);
+}
+
+function copyToClipboard($text) {
+    if (strncasecmp(PHP_OS, 'WIN', 3) == 0) {
+        $result = exec('echo ' . escapeshellarg($text) . ' | clip');
+        if ($result === false) {
+            echo "Failed to copy to clipboard. Ensure 'clip' is available in your PATH.\n";
+        }
+    } else {
+        if (exec('command -v pbcopy')) {
+            exec('echo ' . escapeshellarg($text) . ' | pbcopy');
+        } elseif (exec('command -v xclip')) {
+            exec('echo ' . escapeshellarg($text) . ' | xclip -selection clipboard');
+        } elseif (exec('command -v xsel')) {
+            exec('echo ' . escapeshellarg($text) . ' | xsel --clipboard --input');
+        } else {
+            echo "Failed to copy to clipboard. Install 'pbcopy', 'xclip', or 'xsel'.\n";
+        }
+    }
 }

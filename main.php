@@ -32,7 +32,7 @@ while (true) {
             break;
 
         case '2':
-            require_once 'viewPasswords.php';
+            require_once 'viewPassword.php';
             break;
 
         case '3':
