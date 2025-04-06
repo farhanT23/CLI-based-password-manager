@@ -1,6 +1,6 @@
 <?php
 
-require_once 'functions.php';
+require_once __DIR__ . '/lib/functions.php';
 
 echo "=== CLI PASSWORD MANAGER ===\n";
 
@@ -30,19 +30,19 @@ while (true) {
 
     switch ($choice) {
         case '1':
-            require_once 'addPassword.php';
+            require_once __DIR__ . '/src/addPassword.php';
             break;
 
         case '2':
-            require_once 'viewPassword.php';
+            require_once __DIR__ . '/src/viewPassword.php';
             break;
         
         case '3':
-            require_once 'deletePassword.php';
+            require_once __DIR__ . '/src/deletePassword.php';
             break;
         
         case '4':
-            require_once 'updatePassword.php';
+            require_once __DIR__ . '/src/updatePassword.php';
             break;
 
         case '5':

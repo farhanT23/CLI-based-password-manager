@@ -1,5 +1,5 @@
 <?php 
-require_once 'functions.php';
+require_once __DIR__ . '/../lib/functions.php';
 
 function validation($title, $username, $password, $confirm) {
 

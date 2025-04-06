@@ -1,5 +1,6 @@
 <?php
-require_once 'functions.php';
+require_once __DIR__ . '/../lib/functions.php';
+
 
 $masterPassword = verifyMasterPassword();
 
@@ -30,4 +31,5 @@ foreach ($entries as $index => $entry) {
 if (!$found) {
     echo "No entry found with the title '$title'.\n";
 }
-?>
+
+exit;
