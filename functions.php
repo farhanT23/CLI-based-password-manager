@@ -72,6 +72,11 @@ function loadPasswords() {
     return json_decode($json, true);
 }
 
+function savePasswords($passwords) {
+    $json = json_encode($passwords, JSON_PRETTY_PRINT);
+    file_put_contents('storage/passwords.json', $json);
+}
+
 function encrypt_password($password) {
     return openssl_encrypt($password, CIPHER_METHOD, ENCRYPTION_KEY, 0, ENCRYPTION_IV);
 }

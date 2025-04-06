@@ -1,11 +1,6 @@
 <?php 
 require_once 'functions.php';
 
-function savePasswords($passwords) {
-    $json = json_encode($passwords, JSON_PRETTY_PRINT);
-    file_put_contents('storage/passwords.json', $json);
-}
-
 function validation($title, $username, $password, $confirm) {
 
     if ($password !== $confirm) {
